@@ -1,0 +1,19 @@
+module CMarauders [extern_c] {
+ header "../xnu/osfmk/kern/ipc_kobject.h"
+ header "../xnu/libsyscall/wrappers/libproc/libproc.h"
+ header "../xnu/bsd/sys/proc_info.h"
+ header "../xnu/bsd/sys/kern_event.h"
+ header "../xnu/bsd/sys/sys_domain.h"
+ header "../xnu/bsd/sys/pipe.h"
+ header "../xnu/bsd/sys/ev.h"
+ header "../xnu/bsd/net/net_kev.h"
+ header "../xnu/bsd/net/route.h"
+ header "../dyld/src/dyld_process_info_internal.h"
+ header "../xpc/xpc_pipe.h"
+ header "../xpc/xpc_base.h"
+ header "../xpc/xpc.h"
+ header "../mach/mach_vm.h"
+ header "../LoggingSupport/ActivityStreamSPI.h"
+ header "../NetworkStatistics/NetworkStatistics.h"
+ export *
+}

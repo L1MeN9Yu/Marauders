@@ -1,0 +1,141 @@
+#include <CoreFoundation/CoreFoundation.h>
+
+CF_ASSUME_NONNULL_BEGIN
+
+typedef void *NStatManagerRef;
+typedef void *NStatSourceRef;
+
+NStatManagerRef _Nullable NStatManagerCreate(
+        CFAllocatorRef,
+        dispatch_queue_t,
+        void (^)(void *, void *)
+);
+
+int NStatManagerSetInterfaceTraceFD(NStatManagerRef, int fd);
+
+int NStatManagerSetFlags(NStatManagerRef, int Flags);
+
+int NStatManagerAddAllTCPWithFilter(NStatManagerRef, int something, int somethingElse);
+
+int NStatManagerAddAllUDPWithFilter(NStatManagerRef, int something, int somethingElse);
+
+void * _Nullable NStatSourceQueryDescription(NStatSourceRef);
+
+CF_EXPORT CFStringRef kNStatProviderInterface;
+CF_EXPORT CFStringRef kNStatProviderRoute;
+CF_EXPORT CFStringRef kNStatProviderSysinfo;
+CF_EXPORT CFStringRef kNStatProviderTCP;
+CF_EXPORT CFStringRef kNStatProviderUDP;
+CF_EXPORT CFStringRef kNStatSrcKeyAvgRTT;
+CF_EXPORT CFStringRef kNStatSrcKeyChannelArchitecture;
+CF_EXPORT CFStringRef kNStatSrcKeyConnProbeFailed;
+CF_EXPORT CFStringRef kNStatSrcKeyConnectAttempt;
+CF_EXPORT CFStringRef kNStatSrcKeyConnectSuccess;
+CF_EXPORT CFStringRef kNStatSrcKeyDurationAbsoluteTime;
+CF_EXPORT CFStringRef kNStatSrcKeyEPID;
+CF_EXPORT CFStringRef kNStatSrcKeyEUPID;
+CF_EXPORT CFStringRef kNStatSrcKeyEUUID;
+CF_EXPORT CFStringRef kNStatSrcKeyInterface;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceCellConfigBackoffTime;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceCellConfigInactivityTime;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceCellUlAvgQueueSize;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceCellUlMaxQueueSize;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceCellUlMinQueueSize;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceDescription;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceDlCurrentBandwidth;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceDlMaxBandwidth;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceIsAWD;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceIsAWDL;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceIsCellFallback;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceIsExpensive;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceLinkQualityMetric;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceName;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceThreshold;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceType;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceTypeCellular;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceTypeLoopback;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceTypeUnknown;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceTypeWiFi;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceTypeWired;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlBytesLost;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlCurrentBandwidth;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlEffectiveLatency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlMaxBandwidth;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlMaxLatency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlMinLatency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceUlReTxtLevel;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiConfigFrequency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiConfigMulticastRate;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiDlEffectiveLatency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiDlErrorRate;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiDlMaxLatency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiDlMinLatency;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiScanCount;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiScanDuration;
+CF_EXPORT CFStringRef kNStatSrcKeyInterfaceWifiUlErrorRate;
+CF_EXPORT CFStringRef kNStatSrcKeyLocal;
+CF_EXPORT CFStringRef kNStatSrcKeyMinRTT;
+CF_EXPORT CFStringRef kNStatSrcKeyPID;
+CF_EXPORT CFStringRef kNStatSrcKeyProbeActivated;
+CF_EXPORT CFStringRef kNStatSrcKeyProcessName;
+CF_EXPORT CFStringRef kNStatSrcKeyProvider;
+CF_EXPORT CFStringRef kNStatSrcKeyRcvBufSize;
+CF_EXPORT CFStringRef kNStatSrcKeyRcvBufUsed;
+CF_EXPORT CFStringRef kNStatSrcKeyReadProbeFailed;
+CF_EXPORT CFStringRef kNStatSrcKeyRemote;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteDestination;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteFlags;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteGateway;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteGatewayID;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteID;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteMask;
+CF_EXPORT CFStringRef kNStatSrcKeyRouteParentID;
+CF_EXPORT CFStringRef kNStatSrcKeyRxBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyRxCellularBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyRxDupeBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyRxOOOBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyRxPackets;
+CF_EXPORT CFStringRef kNStatSrcKeyRxWiFiBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyRxWiredBytes;
+CF_EXPORT CFStringRef kNStatSrcKeySndBufSize;
+CF_EXPORT CFStringRef kNStatSrcKeySndBufUsed;
+CF_EXPORT CFStringRef kNStatSrcKeyStartAbsoluteTime;
+CF_EXPORT CFStringRef kNStatSrcKeyTCPCCAlgorithm;
+CF_EXPORT CFStringRef kNStatSrcKeyTCPState;
+CF_EXPORT CFStringRef kNStatSrcKeyTCPTxCongWindow;
+CF_EXPORT CFStringRef kNStatSrcKeyTCPTxUnacked;
+CF_EXPORT CFStringRef kNStatSrcKeyTCPTxWindow;
+CF_EXPORT CFStringRef kNStatSrcKeyTrafficClass;
+CF_EXPORT CFStringRef kNStatSrcKeyTrafficMgtFlags;
+CF_EXPORT CFStringRef kNStatSrcKeyTxBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyTxCellularBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyTxPackets;
+CF_EXPORT CFStringRef kNStatSrcKeyTxReTx;
+CF_EXPORT CFStringRef kNStatSrcKeyTxWiFiBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyTxWiredBytes;
+CF_EXPORT CFStringRef kNStatSrcKeyUPID;
+CF_EXPORT CFStringRef kNStatSrcKeyUUID;
+CF_EXPORT CFStringRef kNStatSrcKeyVUUID;
+CF_EXPORT CFStringRef kNStatSrcKeyVarRTT;
+CF_EXPORT CFStringRef kNStatSrcKeyWriteProbeFailed;
+CF_EXPORT CFStringRef kNStatSrcTCPStateCloseWait;
+CF_EXPORT CFStringRef kNStatSrcTCPStateClosed;
+CF_EXPORT CFStringRef kNStatSrcTCPStateClosing;
+CF_EXPORT CFStringRef kNStatSrcTCPStateEstablished;
+CF_EXPORT CFStringRef kNStatSrcTCPStateFinWait1;
+CF_EXPORT CFStringRef kNStatSrcTCPStateFinWait2;
+CF_EXPORT CFStringRef kNStatSrcTCPStateLastAck;
+CF_EXPORT CFStringRef kNStatSrcTCPStateListen;
+CF_EXPORT CFStringRef kNStatSrcTCPStateSynReceived;
+CF_EXPORT CFStringRef kNStatSrcTCPStateSynSent;
+CF_EXPORT CFStringRef kNStatSrcTCPStateTimeWait;
+
+CFStringRef NStatSourceCopyProperty(NStatSourceRef, CFStringRef);
+
+void NStatSourceSetDescriptionBlock(NStatSourceRef arg, void (^)(_Nullable CFDictionaryRef));
+
+void NStatSourceSetRemovedBlock(NStatSourceRef arg, void (^)(void));
+
+void NStatSourceSetEventsBlock(NStatSourceRef, void(^)(_Nullable NStatSourceRef));
+
+CF_ASSUME_NONNULL_END
