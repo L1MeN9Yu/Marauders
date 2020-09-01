@@ -63,7 +63,6 @@ public extension ProcessMonitor {
             }
             let info_array = bufferPointer.bindMemory(to: dyld_image_info_64.self, capacity: Int(info_array_count))
 
-            //            for item in 0..<info_array_count {
             for item in 0..<1 {
                 let info = info_array[Int(item)]
                 var region_info = proc_regionwithpathinfo()
@@ -84,30 +83,6 @@ public extension ProcessMonitor {
                         if proc_pidinfo(pid, PROC_PIDREGIONPATHINFO, nextAddress, &current_region_info, region_info_size) != region_info_size {
                             break
                         }
-                        //                        if (current_region_info.prp_vip.vip_vi.vi_stat.vst_dev != 0 &&
-                        //                                current_region_info.prp_vip.vip_vi.vi_stat.vst_ino != 0 &&
-                        //                                (current_region_info.prp_vip.vip_vi.vi_stat.vst_dev != region_info.prp_vip.vip_vi.vi_stat.vst_dev
-                        //                                        || current_region_info.prp_vip.vip_vi.vi_stat.vst_ino != region_info.prp_vip.vip_vi.vi_stat.vst_ino)) {
-                        //                            break
-                        //                        }
-                        //                        if (current_region_info.prp_vip.vip_vi.vi_stat.vst_dev == 0 &&
-                        //                                current_region_info.prp_vip.vip_vi.vi_stat.vst_ino == 0 &&
-                        //                                current_region_info.prp_prinfo.pri_user_tag != 0) {
-                        //                            break
-                        //                        }
-                        //                        if current_region_info.prp_vip.vip_path.0 == 0 {
-                        //                            var size3: mach_vm_size_t = 0
-                        //                            let path = UnsafeMutableBufferPointer<[CChar]>.allocate(capacity: Int(MAXPATHLEN))
-                        //                            let target: UInt = unsafeBitCast(path.baseAddress, to: UInt.self)
-                        //                            let target64 = UInt64(target)
-                        //                            // info.imageFilePath 不对
-                        //                            let path_rc = mach_vm_read_overwrite(mach_port, info.imageFilePath, mach_vm_size_t(MAXPATHLEN), target64, &size3)
-                        //                            if path_rc == KERN_SUCCESS {
-//
-                        //                            } else {
-                        //                                print("path rc error :\(path_rc)")
-                        //                            }
-                        //                        }
                         size = current_region_info.prp_prinfo.pri_size
                         let nextRegionInfo = RegionInfo(region_info: current_region_info)
                         if !regions.contains(nextRegionInfo) { regions.append(nextRegionInfo) }
