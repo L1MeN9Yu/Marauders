@@ -23,8 +23,8 @@ public struct ResourceInfo: Codable {
     public let childInterruptWkups: UInt64
     public let childPageins: UInt64
     public let childElapsedAbstime: UInt64
-    public let diskioBytesread: UInt64
-    public let diskioByteswritten: UInt64
+    public let diskioBytesRead: UInt64
+    public let diskioBytesWritten: UInt64
     public let cpuTimeQosDefault: UInt64
     public let cpuTimeQosMaintenance: UInt64
     public let cpuTimeQosBackground: UInt64
@@ -60,8 +60,8 @@ public struct ResourceInfo: Codable {
         childInterruptWkups = rusageInfo.ri_child_interrupt_wkups
         childPageins = rusageInfo.ri_child_pageins
         childElapsedAbstime = rusageInfo.ri_child_elapsed_abstime
-        diskioBytesread = rusageInfo.ri_diskio_bytesread
-        diskioByteswritten = rusageInfo.ri_diskio_byteswritten
+        diskioBytesRead = rusageInfo.ri_diskio_bytesread
+        diskioBytesWritten = rusageInfo.ri_diskio_byteswritten
         cpuTimeQosDefault = rusageInfo.ri_cpu_time_qos_default
         cpuTimeQosMaintenance = rusageInfo.ri_cpu_time_qos_maintenance
         cpuTimeQosBackground = rusageInfo.ri_cpu_time_qos_background

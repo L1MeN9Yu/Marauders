@@ -7,8 +7,18 @@ let package = Package(
     name: "Marauders",
     products: [
         .library(name: "Marauders", targets: ["Marauders"]),
+        .executable(name: "MaraudersCLI", targets: ["MaraudersCLI"]),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
+        .package(url: "https://github.com/L1MeN9Yu/Senna", from: "2.0.0"),
     ],
     targets: [
+        .target(name: "MaraudersCLI", dependencies: [
+            "Marauders",
+            "Senna",
+            .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        ]),
         .target(name: "Marauders", dependencies: ["CMarauders"]),
         .target(name: "CMarauders"),
         .testTarget(name: "MaraudersTests", dependencies: ["Marauders"]),
