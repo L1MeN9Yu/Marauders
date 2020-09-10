@@ -78,6 +78,7 @@ private extension ProcessMonitor {
             break
         }
         return .init(
+            fd: fd,
             name: name,
             type: "VNODE",
             openFlags: vnode_fdinfowithpath.pfi.fi_openflags,
@@ -273,6 +274,7 @@ private extension ProcessMonitor {
         }
 
         return .init(
+            fd: fd,
             name: name,
             type: type,
             openFlags: socket_fdinfo.pfi.fi_openflags,
@@ -302,6 +304,7 @@ private extension ProcessMonitor {
         if (kqueue_state & ~(UInt32(PROC_KQUEUE_32) | UInt32(PROC_KQUEUE_64))) == 0 { name += " SUSPENDED" }
 
         return .init(
+            fd: fd,
             name: name,
             type: "QUEUE",
             openFlags: kqueue_fdinfo.pfi.fi_openflags,
@@ -341,6 +344,7 @@ private extension ProcessMonitor {
         if pipe_status == 0 { name += "EXITED WITH STATUS 0" }
 
         return .init(
+            fd: fd,
             name: name,
             type: "PIPE",
             openFlags: pipe_fdinfo.pfi.fi_openflags,

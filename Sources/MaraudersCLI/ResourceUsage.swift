@@ -12,8 +12,6 @@ struct ResourceUsage: ParsableCommand {
 
     func run() throws {
         let resourceInfo = ProcessMonitor.resourceUsage(pid: pid)
-        let physFootprint = resourceInfo.physFootprint
-        let diskioBytesRead = resourceInfo.diskioBytesRead
-        let diskioBytesWritten = resourceInfo.diskioBytesWritten
+        logger.info("\(resourceInfo.reduce("") { $0 + "\n" + "\($1)" })\n")
     }
 }

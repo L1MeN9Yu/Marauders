@@ -15,7 +15,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "MaraudersCLI", dependencies: [
-            "Marauders",
+            .target(name: "Marauders"),
             "Senna",
             .product(name: "ArgumentParser", package: "swift-argument-parser"),
         ]),

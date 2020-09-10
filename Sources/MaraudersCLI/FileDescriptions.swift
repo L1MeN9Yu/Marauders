@@ -12,8 +12,6 @@ struct FileDescriptions: ParsableCommand {
 
     func run() throws {
         let fds = ProcessMonitor.fileDescriptions(pid: pid)
-        let outs = fds
-            .map { "\($0.name)\t\($0.type)\t\($0.node)\t\($0.openFlags)" }
-        outs.forEach { logger.info("\($0)") }
+        logger.info("\(fds.reduce("") { $0 + "\n" + "\($1)" })\n")
     }
 }

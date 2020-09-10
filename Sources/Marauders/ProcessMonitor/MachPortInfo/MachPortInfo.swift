@@ -91,8 +91,7 @@ private extension UInt32 {
         case IKOT_UEXT_OBJECT: return "UEXT_OBJECT"
         case IKOT_ARCADE_REG: return "ARCADE_REG"
         case IKOT_UNKNOWN: return "UNKNOWN"
-        default:
-            return "UNKNOWN"
+        default: return "UNKNOWN"
         }
     }
 }
