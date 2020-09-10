@@ -56,10 +56,8 @@ private extension OSLogMonitor {
         }
         if entry.type == OS_ACTIVITY_STREAM_TYPE_LOG_MESSAGE {
             var log_message = entry.log_message
-            var message_char_optional: UnsafePointer<CChar>? = UnsafePointer<CChar>(s_os_log_copy_formatted_message?(&log_message))
-            if let format = log_message.format {
-                message_char_optional = format
-            }
+            let message_char_optional: UnsafePointer<CChar>? = UnsafePointer<CChar>(s_os_log_copy_formatted_message?(&log_message))
+            defer { message_char_optional?.deallocate() }
             guard let message = String(cString: message_char_optional) else { return true }
             let logType = OSLogType(m_os_log_get_type?(&log_message) ?? OSLogType.default.rawValue)
             let category = String(cString: log_message.category) ?? ""
