@@ -12,7 +12,7 @@ public struct OSLogMessage {
     public let category: String
     public let subsystem: String
     public let type: OSLogType
-    public let message: String
+    public let content: String
 
     public init(pid: pid_t, processName: String, category: String, subsystem: String, type: OSLogType, message: String) {
         self.pid = pid
@@ -20,6 +20,6 @@ public struct OSLogMessage {
         self.category = category
         self.subsystem = subsystem
         self.type = type
-        self.message = message
+        content = message
     }
 }

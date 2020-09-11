@@ -51,9 +51,7 @@ private extension OSLogMonitor {
         guard error == 0 else { return true }
         let pid = entry.pid
         let processName = ProcessMonitor.processName(pid: pid)
-        if entry.type == OS_ACTIVITY_STREAM_TYPE_ACTIVITY_CREATE {
-            return true
-        }
+        if entry.type == OS_ACTIVITY_STREAM_TYPE_ACTIVITY_CREATE { return true }
         if entry.type == OS_ACTIVITY_STREAM_TYPE_LOG_MESSAGE {
             var log_message = entry.log_message
             let message_char_optional: UnsafePointer<CChar>? = UnsafePointer<CChar>(s_os_log_copy_formatted_message?(&log_message))

@@ -16,9 +16,9 @@ struct OSLog: ParsableCommand {
     func run() throws {
         try OSLogMonitor.start { message in
             if message.processName == self.processName {
-                return logger.log(level: message.type.level, "\(message.message)")
+                return logger.log(level: message.type.level, "\(message.content)")
             }
-            logger.log(level: message.type.level, "\(message.message)")
+            logger.log(level: message.type.level, "\(message.content)")
         }
         dispatchMain()
     }
