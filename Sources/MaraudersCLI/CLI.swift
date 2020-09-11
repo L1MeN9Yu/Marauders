@@ -20,6 +20,7 @@ struct CLI: ParsableCommand {
             MachPorts.self,
             Regions.self,
             Network.self,
+            KernelExtensions.self,
         ]
         if #available(OSX 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
             commands.append(OSLog.self)
