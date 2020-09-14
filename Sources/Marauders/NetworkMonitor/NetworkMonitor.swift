@@ -10,12 +10,20 @@ import Foundation
 
 public struct NetworkMonitor { private init() {} }
 
+private extension NetworkMonitor {
+    static var manager: NStatManagerRef?
+    static var fdPath: String?
+    static var fd: Int32 = 0
+    static var callback: Callback?
+}
+
 public extension NetworkMonitor {
     typealias Callback = (NetFlowInfo) -> Void
-    static var callback: Callback?
 
     static func start(fileDescriptorPath: String, dispatchQueue: DispatchQueue = .main, callback: @escaping Callback) throws {
         try setup()
+
+        unlink(fileDescriptorPath)
 
         self.callback = callback
 
@@ -31,6 +39,17 @@ public extension NetworkMonitor {
         _ = nStatManagerSetInterfaceTraceFD?(manager, fd)
         _ = nStatManagerAddAllUDPWithFilter?(manager, 0, 0)
         _ = nStatManagerAddAllTCPWithFilter?(manager, 0, 0)
+
+        self.manager = manager
+        self.fd = fd
+        fdPath = fileDescriptorPath
+    }
+
+    static func stop() {
+        nStatManagerDestroy?(manager)
+        manager = nil
+        close(fd)
+        unlink(fdPath)
     }
 }
 
@@ -90,6 +109,9 @@ extension NetworkMonitor {
     typealias NStatManagerCreateFunc = @convention(c) (_: CFAllocator?, _: DispatchQueue, _: @escaping (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void) -> NStatManagerRef?
     static var nStatManagerCreateFunc: NStatManagerCreateFunc?
 
+    typealias NStatManagerDestroyFunc = @convention(c) (_: NStatManagerRef?) -> Void
+    static var nStatManagerDestroy: NStatManagerDestroyFunc?
+
     typealias NStatManagerSetInterfaceTraceFDFunc = @convention(c) (_: NStatManagerRef, _ fd: Int32) -> Int32
     static var nStatManagerSetInterfaceTraceFD: NStatManagerSetInterfaceTraceFDFunc?
 
@@ -128,6 +150,11 @@ extension NetworkMonitor {
             throw Error.symbolNotFound("NStatManagerCreate")
         }
         nStatManagerCreateFunc = unsafeBitCast(NStatManagerCreate_p, to: NStatManagerCreateFunc.self)
+
+        guard let NStatManagerDestroy_p = dlsym(framework, "NStatManagerDestroy") else {
+            throw Error.symbolNotFound("NStatManagerDestroy")
+        }
+        nStatManagerDestroy = unsafeBitCast(NStatManagerDestroy_p, to: NStatManagerDestroyFunc.self)
 
         guard let NStatManagerSetInterfaceTraceFD_p = dlsym(framework, "NStatManagerSetInterfaceTraceFD") else {
             throw Error.symbolNotFound("NStatManagerSetInterfaceTraceFD")

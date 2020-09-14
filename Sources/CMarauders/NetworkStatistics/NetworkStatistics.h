@@ -11,6 +11,8 @@ NStatManagerRef _Nullable NStatManagerCreate(
         void (^)(void *, void *)
 );
 
+void NStatManagerDestroy(NStatManagerRef _Nullable manager);
+
 int NStatManagerSetInterfaceTraceFD(NStatManagerRef, int fd);
 
 int NStatManagerSetFlags(NStatManagerRef, int Flags);

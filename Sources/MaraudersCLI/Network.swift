@@ -12,6 +12,7 @@ struct Network: ParsableCommand {
         try NetworkMonitor.start(fileDescriptorPath: "/tmp/MaraudersCLI.Network", dispatchQueue: .global()) { info in
             logger.info("\(info)")
         }
+
         dispatchMain()
     }
 }

@@ -11,15 +11,15 @@ The `LoggingSupport.framework` wrapper to monitor OSLog.
 #### Usage:
 
 ```swift
-//start monitor
+// start monitor
 try OSLogMonitor.start { message:OSLogMessage in
     // handle message
-    // the callback thread is a thread in the LoggingSupport.framework.the name has
-    // "com.apple.activity.stream" prefix.
+    // the callback thread is a thread in the LoggingSupport.framework.
+    // the name has "com.apple.activity.stream" prefix.
     print("\(message.content)")
 }
 
-//stop monitor
+// stop monitor
 OSLogMonitor.stop()
 ```
 
@@ -30,7 +30,11 @@ The `NetworkStatistics.framework` wrapper to monitor network statistics.
 #### Usage
 
 ```swift
+// start monitor
 try NetworkMonitor.start(fileDescriptorPath: "/path/for/fd", dispatchQueue: .global()) { info:NetFlowInfo in
     print("\(info)")
 }
+
+// stop monitor
+NetworkMonitor.stop()
 ````
