@@ -26,7 +26,7 @@ struct OSLog: ParsableCommand {
 
 @available(OSX 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *)
 extension OSLogType {
-    var level: Logger.Level {
+    var level: Logging.Logger.Level {
         switch self {
         case .default: return .trace
         case .info: return .info
